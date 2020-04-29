@@ -155,6 +155,8 @@ Una vez descomprimido el archivo solamente tenemos que dirigirnos a la carpeta `
 	+ Justo después de elegir nuestra respuesta se cerrará la ventana
 1. Y así habremos comprobado que efectivamente el office ha quedado activado
 
+Dato curioso: Tu office se transforma a Office 2016 Pro Plus.
+
 OUTPUT de la activación
 ```
 ============================================================================
