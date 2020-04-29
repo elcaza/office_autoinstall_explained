@@ -147,9 +147,44 @@ Para utilizar este script es necesario descomprimir el archivo `activate.zip`. E
 Una vez descomprimido el archivo solamente tenemos que dirigirnos a la carpeta `activate` y *ejecutar como administrador* el archivo `activate.cmd`
 1. Click derecho, ejecutar como administrador
 1. Nos abrirá una consola 
-1. Presionaremos enter una vez
-1. Debe aparecernos 
-1. Luego de ello nos preguntará si queremos visitar el blog del autor de este script, responderemos `y` ó `n`, daremos enter nuevamente y nos cerrará la pantalla
+1. Presionaremos enter una vez. Esto tardará un poco, en caso de ser necesario presionaremos enter de nuevo.
+1. Debe aparecernos: `<Product activation successful>`
+	+ De no ser así es probable que no haya corrido el script con privilegios de administrador
+1. Luego de ello nos preguntará si queremos visitar el blog del autor de este script
+	+ responderemos `y` ó `n`
+	+ Justo después de elegir nuestra respuesta se cerrará la ventana
+1. Y así habremos comprobado que efectivamente el office ha quedado activado
+
+OUTPUT de la activación
+```
+============================================================================
+Activating your Office...
+============================================================================
+
+
+The connection to my KMS server failed! Trying to connect to another one...
+Please wait...
+
+
+============================================================================
+
+
+<Product activation successful>
+
+============================================================================
+
+#My official blog: MSGuides.com
+
+#How it works: bit.ly/kms-server
+
+#Please feel free to contact me at msguides.com@gmail.com if you have any questions or concerns.
+
+#Please consider supporting this project: donate.msguides.com
+#Your support is helping me keep my servers running everyday!
+
+============================================================================
+Would you like to visit my blog [Y,N]?
+```
 
 # Problemas / Soluciones
 + Windows detecta activate como virus
