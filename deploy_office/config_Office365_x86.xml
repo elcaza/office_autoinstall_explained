@@ -12,10 +12,10 @@
 
   <Add OfficeClientEdition="32" Channel="Monthly">
     <Product ID="O365ProPlusRetail">
-      <Language ID="en-us" />
+      <Language ID="es-es" />
     </Product>
     <Product ID="VisioProRetail">
-      <Language ID="en-us" />
+      <Language ID="es-es" />
     </Product>
   </Add>
 

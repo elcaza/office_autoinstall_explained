@@ -22,9 +22,11 @@
       <ExcludeApp ID="Skypeforbusiness" />
       <ExcludeApp ID="Groove" />
     </Product>
+    <!--
     <Product ID="VisioProRetail">
       <Language ID="es-es" />
     </Product>
+    -->
   </Add>
 
   <!--  <Updates Enabled="TRUE" Channel="Monthly" /> -->
