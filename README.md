@@ -143,23 +143,23 @@ Es posible validar la licencia mediante un simple script.
 
 + <a href="http://MSGuides.com" target=_blank>MSGuides</a>
 + <a href="http://aka.ms/ODT" target=_blank>Office Deployment Tool</a>
-+ <a href="+ https://docs.microsoft.com/en-us/deployoffice/office-deployment-tool-configuration-options" target=_blank>Office Deployment Tool configuration options</a>
++ <a href="https://docs.microsoft.com/en-us/deployoffice/office-deployment-tool-configuration-options" target=_blank>Office Deployment Tool configuration options</a>
 + <a href="https://docs.microsoft.com/en-us/deployoffice/overview-deploying-languages-microsoft-365-apps" target=_blank>Languages ID Office</a>
 + <a href="https://docs.microsoft.com/en-us/office365/troubleshoot/installation/product-ids-supported-office-deployment-click-to-run" target=_blank>List of Product IDs which are supported by the Office Deployment Tool for Click-to-Run</a>
 
 # ¿Cómo apagar Windows Defender?
 
 ## 1) Abrimos Windows Security 
-![Paso_1](./img/1_entrar_wd.png)
+<img src="./img/1_entrar_wd.png" alt="Paso_1" style="max-width:50%; margin:auto;"/>
 
 ## 2) Dentro del menú Virus & Threat Protection seleccionamos *"Manage settings"*
-![Paso_2](./img/2_virus_and_protection_manage_settings.png)
+<img src="./img/2_virus_and_protection_manage_settings.png" alt="Paso_2" style="max-width:50%; margin:auto;"/>
 
 ## 3) Nos aseguramos de dejarlo en modo apagado/off
-![Paso_3](./img/3_off_realtime.png)
+<img src="./img/3_off_realtime.png" alt="Paso_3" style="max-width:50%; margin:auto;"/>
 
 ## 3) Dentro de App & browser control seleccionamos *"Off"* para "Check apps and files" 
-![Paso_4](./img/4_off_app_and_files.png)
+<img src="./img/4_off_app_and_files.png" alt="Paso_4" style="max-width:50%; margin:auto;"/>
 
 ## 5) Listo. Podemos realizar la prueba del script para ver que efectivamente funciona.
 
