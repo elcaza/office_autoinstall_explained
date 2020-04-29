@@ -121,10 +121,35 @@ Una vez que eso haya finalizado tendremos disponible nuestro Office sin licencia
 
 # ¿Validación de licencia? ¿Crack de Office?
 
-Es posible validar la licencia mediante un simple script. 
+Es posible validar la licencia mediante un simple script y esto ocurre básicamente porque al válidar tu licencia ocurre lo siguiente:
 
-## Password
-`activate`
++ -> Office/Windows por medio de una función pregunta a los servidores de Microsoft: *"knock, knock, ¿Es está licencia válida?"*
+
++ -> Microsoft entonces verifica y manda un YES o un NO
+
+El truco está en que este script cambia la dirección a la que se va a hacer la pregunta. En lugar de apuntar a los servidores de Microsoft "Preguntamos a los servers del tío KMS que siempre responderán con un "YES, es válida". Y entonces sucede:
+
++ -> Office/Windows por medio de una función pregunta a los servidores del tío KMS: *"knock, knock, ¿Es está licencia válida?"*
+
++ -> El tío KMS, sin pensarlo, responde "Simón, es válida".
+
+Y listo, office se activa.
+
+## ¿Cómo utilizar este script?
+
+Para utilizar este script es necesario descomprimir el archivo `activate.zip`. Este archivo está protegido por contraseña porque de otro modo Windows Defender lo detecta como amenzada al descargarlo. 
+
++ Asegúrese de que Windows Defender esté desactivado. (Consultar la sección: "*¿Cómo apagar Windows Defender?"*)
++ El password es el siguiente:
+
+##### Password: `activate`
+
+Una vez descomprimido el archivo solamente tenemos que dirigirnos a la carpeta `activate` y *ejecutar como administrador* el archivo `activate.cmd`
+1. Click derecho, ejecutar como administrador
+1. Nos abrirá una consola 
+1. Presionaremos enter una vez
+1. Debe aparecernos 
+1. Luego de ello nos preguntará si queremos visitar el blog del autor de este script, responderemos `y` ó `n`, daremos enter nuevamente y nos cerrará la pantalla
 
 # Problemas / Soluciones
 + Windows detecta activate como virus
