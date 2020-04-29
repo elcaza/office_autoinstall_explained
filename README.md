@@ -127,6 +127,17 @@ Es posible validar la licencia mediante un simple script.
 `activate`
 
 # Problemas / Soluciones
++ Windows detecta activate como virus
+	+ Lo que sucede es que windows detecta el script como un activador de Office y por supuesto lo bloquea. De hecho, en la descripción de Windows Defender menciona.
+		+ HackTool:BAT/AutoKMS
+		+ This program has potentially unwanted behavior
+	+ Y claro, ellos no desean que tú tengas sus productos sin pagar por ellos
+	+ Basta con deshabilitar Windows Defender durante la activación.
+	+ Si el problema persiste desactiva tu antivirus 
++ Pantalla azul de bloqueo
+	+ Al igual que `Windows Defender - Real Time Protection` es necesario desactivar `App & Browser Control - Check apps and files` como se menciona en la sección de `¿Cómo apagar Windows Defender?`
++ ¡No sé la contraseña del zip!
+	+ Bro, ese no es un problema. La contraseña es `activate` como se mencionó en el post.
 
 # Referencias / Agradecimientos
 
@@ -135,3 +146,21 @@ Es posible validar la licencia mediante un simple script.
 + <a href="+ https://docs.microsoft.com/en-us/deployoffice/office-deployment-tool-configuration-options" target=_blank>Office Deployment Tool configuration options</a>
 + <a href="https://docs.microsoft.com/en-us/deployoffice/overview-deploying-languages-microsoft-365-apps" target=_blank>Languages ID Office</a>
 + <a href="https://docs.microsoft.com/en-us/office365/troubleshoot/installation/product-ids-supported-office-deployment-click-to-run" target=_blank>List of Product IDs which are supported by the Office Deployment Tool for Click-to-Run</a>
+
+# ¿Cómo apagar Windows Defender?
+
+## 1) Abrimos Windows Security 
+![Paso_1](./img/1_entrar_wd.png)
+
+## 2) Dentro del menú Virus & Threat Protection seleccionamos *"Manage settings"*
+![Paso_2](./img/2_virus_and_protection_manage_settings.png)
+
+## 3) Nos aseguramos de dejarlo en modo apagado/off
+![Paso_3](./img/3_off_realtime.png)
+
+## 3) Dentro de App & browser control seleccionamos *"Off"* para "Check apps and files" 
+![Paso_4](./img/4_off_app_and_files.png)
+
+## 5) Listo. Podemos realizar la prueba del script para ver que efectivamente funciona.
+
+## 6) Luego de que hayas comprobado el funcionamiento, ¡Activa Windows Defender nuevamente!
