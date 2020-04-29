@@ -150,16 +150,16 @@ Es posible validar la licencia mediante un simple script.
 # ¿Cómo apagar Windows Defender?
 
 ## 1) Abrimos Windows Security 
-<img src="./img/1_entrar_wd.png" alt="Paso_1" style="max-width:50%; margin:auto;"/>
+<img src="./img/1_entrar_wd.png" alt="Paso_1" width="50%"/>
 
 ## 2) Dentro del menú Virus & Threat Protection seleccionamos *"Manage settings"*
-<img src="./img/2_virus_and_protection_manage_settings.png" alt="Paso_2" style="max-width:50%; margin:auto;"/>
+<img src="./img/2_virus_and_protection_manage_settings.png" alt="Paso_2" width="50%"/>
 
 ## 3) Nos aseguramos de dejarlo en modo apagado/off
-<img src="./img/3_off_realtime.png" alt="Paso_3" style="max-width:50%; margin:auto;"/>
+<img src="./img/3_off_realtime.png" alt="Paso_3" width="50%"/>
 
 ## 3) Dentro de App & browser control seleccionamos *"Off"* para "Check apps and files" 
-<img src="./img/4_off_app_and_files.png" alt="Paso_4" style="max-width:50%; margin:auto;"/>
+<img src="./img/4_off_app_and_files.png" alt="Paso_4" width="50%" />
 
 ## 5) Listo. Podemos realizar la prueba del script para ver que efectivamente funciona.
 
