@@ -129,7 +129,7 @@ Una vez que eso haya finalizado tendremos disponible nuestro Office sin licencia
 
 Es posible validar la licencia mediante un simple script. Esto ocurre gracias al Servicio de Administración de Claves KMS (Key Management Service). Este es un servicio legitimo de Windows y está diseñado para que las organizaciones activen sus productos por volumen. 
 
-Es decir, la organización contrata un montón de licencias que serán utilizadas por toda su empresa, a diferencia del licenciamiento estándar de Microsoft, estas no se aclan a la máquina en especifico, sino a la empresa. Por lo anterior, para este tipo de activación se debe contemplar lo siguiente:
+Es decir, la organización contrata un montón de licencias que serán utilizadas por toda su empresa, a diferencia del licenciamiento estándar de Microsoft, estas no se anclan a una máquina en especifico, sino a la cuenta de una empresa. Por lo anterior, para este tipo de activación se debe contemplar lo siguiente:
 
 1. La empresa debe montar su propio servidor KMS.
 2. Requieren un mínimo de activaciones para funcionar. Es decir, para hacer válidas las activaciones varia el número MÍNIMO de clientes que utilicen la licencia. De otro modo está sería inválida.
@@ -137,11 +137,22 @@ Es decir, la organización contrata un montón de licencias que serán utilizada
 
 Para las organizaciones lo anterior no representa problema alguno, pues suelen cumplir con estos requerimientos. Sin embargo, este mismo modelo de negocio es el que permite se pueda *"engañar"* a Windows para hacerle creer que está bajo un licenciamiento por volumen.
 
+Debido a que cualquier persona puede generar su propio servidor KMS este puede ser modificarlo para que se apruebe cada licencia. Para esto solamente se requiere lo siguiente:
 
+1. Montar tu propio servidor KMS
+2. Hacer que tus computadoras consulten al TU SERVIDOR KMS
+3. Hacer que cada determinado tiempo se renueve la licencia mediante tu propio servidor KMS
+
+Para esto ya existe un script proporcionado por [https://msguides.com/](https://msguides.com/) el cual se conecta con su propio Servidor KMS.
+
+# ¿Es seguro utilizar activadores KMS?
+Como vimos anteriormente el problema no es usar activadores KMS, pues estos son proporcionados por Microsoft a las empresas que pagan licenciamiento por volumen. El verdadero problema es llegar a la pirateria de estos servicios, pues es ahí donde nos podemos encontrar con software malicioso.
+
+Sin embargo, el script activador que proporciona [msguides](https://msguides.com/) parece bastante transpartente. El código con comentarios del activador KMS se encuentra en la sección **Anexo Script con comentarios**.
 
 ## ¿Cómo utilizar este script?
 
-Para utilizar este script es necesario descomprimir el archivo `activate.zip`. Este archivo está protegido por contraseña porque de otro modo Windows Defender lo detecta como amenzada al descargarlo. 
+Para utilizar este script es necesario descomprimir el archivo `activate.zip`. Este archivo está protegido por contraseña porque de otro modo Windows Defender lo detecta como amenaza al descargarlo. 
 
 + Asegúrese de que Windows Defender esté desactivado. (Consultar la sección: "*¿Cómo apagar Windows Defender?"*)
 + El password es el siguiente:
@@ -159,7 +170,7 @@ Una vez descomprimido el archivo solamente tenemos que dirigirnos a la carpeta `
 	+ Justo después de elegir nuestra respuesta se cerrará la ventana
 1. Y así habremos comprobado que efectivamente el office ha quedado activado
 
-Dato curioso: Tu office se transforma a Office 2016 Pro Plus.
+#### Dato curioso: Tu office se transforma a Office 2016 Pro Plus.
 
 OUTPUT de la activación
 ```
@@ -205,18 +216,120 @@ Would you like to visit my blog [Y,N]?
 + ¡No sé la contraseña del zip!
 	+ Bro, ese no es un problema. La contraseña es `activate` como se mencionó en el post.
 
-# Referencias / Agradecimientos
+# Anexo Script KMS con comentarios
+```cmd
+:: @echo off  => define que la terminal no nos devuelva las salidas propias de la terminal
+:: Es muy usado en los scripts para evitar la salida de información basura
+@echo off
 
-+ <a href="http://MSGuides.com" target=_blank>MSGuides</a>
-+ <a href="http://aka.ms/ODT" target=_blank>Office Deployment Tool</a>
-+ <a href="https://docs.microsoft.com/en-us/deployoffice/office-deployment-tool-configuration-options" target=_blank>Office Deployment Tool configuration options</a>
-+ <a href="https://docs.microsoft.com/en-us/deployoffice/overview-deploying-languages-microsoft-365-apps" target=_blank>Languages ID Office</a>
-+ <a href="https://docs.microsoft.com/en-us/office365/troubleshoot/installation/product-ids-supported-office-deployment-click-to-run" target=_blank>List of Product IDs which are supported by the Office Deployment Tool for Click-to-Run</a>
-+ [¿Cómo funciona KMS?](https://stackoverflow.com/questions/44243669/need-explanation-on-how-this-windows-cmd-batch-script-accomplishes-the-task-of-a)
-+ [Entendiendo KMS](https://docs.microsoft.com/en-us/previous-versions/tn-archive/ff793434(v=technet.10)?redirectedfrom=MSDN)
-+ [¿Windows sabe sobre los servicios de activación piratas?](https://www.quora.com/Does-Microsoft-know-that-people-are-using-KMOspico-to-activate-Windows-or-Microsoft-office-Microsoft-Office-Toll-Free-Support-Number-1-800-9824-735)
-+ [¿Es segura y válida una activación mediante KMS?](https://superuser.com/questions/1383281/is-kms-digital-online-activation-suite-safe-valid-and-genuine-to-activate-window)
+:: title => Crea un título para la ventana
+title _ Permanently Activate Office 365 ProPlus for FREE => MSGuides . com
 
+:: & => Es utilizado para concatenar comandos. Usado cuando escribes en una solo línea. 
+:: cls => Hace un limpiado de la pantalla para que no muestre lo escritor anteriormente
+&cls
+
+:: Pone los titulos que nosotros vemos
+&echo ============================================================================
+&echo #Project: Activating Microsoft software products for FREE without software
+&echo ============================================================================
+&echo.
+&echo #Supported products: Office 365 ProPlus (x86-x64)
+&echo.
+&echo.
+
+:: & => Es utilizado para concatenar comandos. Usado cuando escribes en una solo línea. 
+:: ( ) => Es usado para agrupar una secuencia de comandos
+&
+(
+    :: Condicion if que checa la existencia de un archivo .vbs (Visual Basic Script)
+    :: En caso de que exista entramos a la carpeta 
+    if exist "%ProgramFiles%\Microsoft Office\Office16\ospp.vbs" 
+        cd /d "%ProgramFiles%\Microsoft Office\Office16"
+)
+&(  
+    :: Condicion if que checa la existencia de un archivo .vbs (Visual Basic Script)
+    :: En caso de que exista entramos a la carpeta 
+    if exist "%ProgramFiles(x86)%\Microsoft Office\Office16\ospp.vbs" 
+        cd /d "%ProgramFiles(x86)%\Microsoft Office\Office16"
+)
+&(
+    for /f %%x in ('dir /b ..\root\Licenses16\proplusvl_kms*.xrm-ms') 
+        do cscript ospp.vbs /inslic:"..\root\Licenses16\%%x" >nul
+)
+&(
+    for /f %%x in ('dir /b ..\root\Licenses16\proplusvl_mak*.xrm-ms') 
+        do cscript ospp.vbs /inslic:"..\root\Licenses16\%%x" >nul
+)
+
+:: Mensajes que nosotros vemos echo. es un salto de linea
+&echo.
+&echo ============================================================================
+&echo Activating your Office...
+
+:: Esta secuenta de comandos settea las claves de los productos y configura varios servidores KMS para corroborar la validez de la clave
+
+&cscript //nologo ospp.vbs /unpkey:WFG99 >nul
+&cscript //nologo ospp.vbs /unpkey:DRTFM >nul
+&cscript //nologo ospp.vbs /unpkey:BTDRB >nul
+&cscript //nologo ospp.vbs /inpkey:XQNVK-8JYDB-WJ9W3-YJ8YR-WFG99 >nul
+&set i=1:server
+    if %i%==1 set KMS_Sev=kms7.MSGuides.com
+    if %i%==2 set KMS_Sev=kms8.MSGuides.com
+    if %i%==3 set KMS_Sev=kms9.MSGuides.com
+    if %i%==4 goto notsupported
+    cscript //nologo ospp.vbs /sethst:%KMS_Sev% >nul
+
+:: Mensajes que nosotros vemos echo. es un salto de linea
+&echo ============================================================================
+&echo.
+&echo.
+
+:: Realiza la activación
+
+cscript //nologo ospp.vbs /act | find /i "successful" 
+&
+
+:: Mensajes que nosotros vemos echo. es un salto de linea
+& (echo.
+&echo ============================================================================
+&echo.
+&echo #My official blog: MSGuides.com
+&echo.
+&echo #How it works: bit.ly/kms-server
+&echo.
+&echo #Please feel free to contact me at msguides.com@gmail.com if you have any questions or concerns.
+&echo.
+&echo #Please consider supporting this project: donate.msguides.com
+&echo #Your support is helping me keep my servers running everyday!
+&echo.
+&echo ============================================================================
+
+:: Realiza una pregunta para saber si quieres mirar su blog
+
+&choice /n /c YN /m "Would you like to visit my blog [Y,N]?" 
+& if errorlevel 2 exit) || (echo The connection to my KMS server failed! Trying to connect to another one... 
+:: Mensajes que nosotros vemos echo. es un salto de linea
+& echo Please wait... 
+& echo. 
+& echo. 
+
+& set /a i+=1 
+& goto server)
+explorer "http://MSGuides.com"
+&goto halt
+
+:notsupported
+
+:: Mensajes que nosotros vemos echo. es un salto de linea
+echo.
+&echo ============================================================================
+&echo Sorry! Your version is not supported.
+&echo Please try installing the latest version here: bit.ly/odt2k16
+
+:halt
+pause >nul
+```
 # ¿Cómo apagar Windows Defender?
 
 ## 1) Abrimos Windows Security 
@@ -234,3 +347,15 @@ Would you like to visit my blog [Y,N]?
 ## 5) Listo. Podemos realizar la prueba del script para ver que efectivamente funciona.
 
 ## 6) Luego de que hayas comprobado el funcionamiento, ¡Activa Windows Defender nuevamente!
+
+# Referencias / Agradecimientos
+
++ [MSGuides](http://MSGuides.com)
++ [Office Deployment Tool](http://aka.ms/ODT)
++ [Office Deployment Tool configuration options](https://docs.microsoft.com/en-us/deployoffice/office-deployment-tool-configuration-options)
++ [Languages ID Office](https://docs.microsoft.com/en-us/deployoffice/overview-deploying-languages-microsoft-365-apps)
++ [List of Product IDs which are supported by the Office Deployment Tool for Click-to-Run](https://docs.microsoft.com/en-us/office365/troubleshoot/installation/product-ids-supported-office-deployment-click-to-run)
++ [¿Cómo funciona KMS?](https://stackoverflow.com/questions/44243669/need-explanation-on-how-this-windows-cmd-batch-script-accomplishes-the-task-of-a)
++ [Entendiendo KMS](https://docs.microsoft.com/en-us/previous-versions/tn-archive/ff793434(v=technet.10)?redirectedfrom=MSDN)
++ [¿Windows sabe sobre los servicios de activación piratas?](https://www.quora.com/Does-Microsoft-know-that-people-are-using-KMOspico-to-activate-Windows-or-Microsoft-office-Microsoft-Office-Toll-Free-Support-Number-1-800-9824-735)
++ [¿Es segura y válida una activación mediante KMS?](https://superuser.com/questions/1383281/is-kms-digital-online-activation-suite-safe-valid-and-genuine-to-activate-window)
