@@ -10,12 +10,18 @@ Este repositorio pretende mostrar la forma en que funciona la instalación autom
 	+ Otras versiones de office (P. Ej. Enterprise)
 	+ Todo en cualquier lenguaje
 + Se adjunta un script con el que podemos observar que es posible realizar una activación del producto.
-	+ **ADVERTENCIA**
-		+ Este material es meramente educativo y no se incentiva de ninguna manera a el uso de la pirateria.
-		+ Como alternativa recomendamos:
-			+ La compra de licencias originales
-			+ Obtener licencias gratuitas para estudiantes
-			+ Usar software libre
+
+## ADVERTENCIA
++ Este material es meramente educativo y no se incentiva de ninguna manera a el uso de la pirateria.
++ Como alternativa recomendamos:
+	+ La compra de licencias originales
+	+ Obtener licencias gratuitas para estudiantes
+	+ Usar software libre
+
+
+## Este contenido también se encuentra disponible en:
++ [Medium: Instalación automática de Office con Office Deployment Tool](https://medium.com/@elcaza/instalaci%C3%B3n-autom%C3%A1tica-de-office-con-office-deployment-tool-36d352dcd2d0)
+
 
 # Instalación Automatizada de Office
 
@@ -121,19 +127,17 @@ Una vez que eso haya finalizado tendremos disponible nuestro Office sin licencia
 
 # ¿Validación de licencia? ¿Crack de Office?
 
-Es posible validar la licencia mediante un simple script y esto ocurre básicamente porque al válidar tu licencia ocurre lo siguiente:
+Es posible validar la licencia mediante un simple script. Esto ocurre gracias al Servicio de Administración de Claves KMS (Key Management Service). Este es un servicio legitimo de Windows y está diseñado para que las organizaciones activen sus productos por volumen. 
 
-+ -> Office/Windows por medio de una función pregunta a los servidores de Microsoft: *"knock, knock, ¿Es está licencia válida?"*
+Es decir, la organización contrata un montón de licencias que serán utilizadas por toda su empresa, a diferencia del licenciamiento estándar de Microsoft, estas no se aclan a la máquina en especifico, sino a la empresa. Por lo anterior, para este tipo de activación se debe contemplar lo siguiente:
 
-+ -> Microsoft entonces verifica y manda un YES o un NO
+1. La empresa debe montar su propio servidor KMS.
+2. Requieren un mínimo de activaciones para funcionar. Es decir, para hacer válidas las activaciones varia el número MÍNIMO de clientes que utilicen la licencia. De otro modo está sería inválida.
+3. El office solamente se activa de manera temporal, durante 180 días, y su licencia debe ser renovada antes de que termine el plazo.
 
-El truco está en que este script cambia la dirección a la que se va a hacer la pregunta. En lugar de apuntar a los servidores de Microsoft "Preguntamos a los servers del tío KMS que siempre responderán con un "YES, es válida". Y entonces sucede:
+Para las organizaciones lo anterior no representa problema alguno, pues suelen cumplir con estos requerimientos. Sin embargo, este mismo modelo de negocio es el que permite se pueda *"engañar"* a Windows para hacerle creer que está bajo un licenciamiento por volumen.
 
-+ -> Office/Windows por medio de una función pregunta a los servidores del tío KMS: *"knock, knock, ¿Es está licencia válida?"*
 
-+ -> El tío KMS, sin pensarlo, responde "Simón, es válida".
-
-Y listo, office se activa.
 
 ## ¿Cómo utilizar este script?
 
@@ -208,6 +212,10 @@ Would you like to visit my blog [Y,N]?
 + <a href="https://docs.microsoft.com/en-us/deployoffice/office-deployment-tool-configuration-options" target=_blank>Office Deployment Tool configuration options</a>
 + <a href="https://docs.microsoft.com/en-us/deployoffice/overview-deploying-languages-microsoft-365-apps" target=_blank>Languages ID Office</a>
 + <a href="https://docs.microsoft.com/en-us/office365/troubleshoot/installation/product-ids-supported-office-deployment-click-to-run" target=_blank>List of Product IDs which are supported by the Office Deployment Tool for Click-to-Run</a>
++ [¿Cómo funciona KMS?](https://stackoverflow.com/questions/44243669/need-explanation-on-how-this-windows-cmd-batch-script-accomplishes-the-task-of-a)
++ [Entendiendo KMS](https://docs.microsoft.com/en-us/previous-versions/tn-archive/ff793434(v=technet.10)?redirectedfrom=MSDN)
++ [¿Windows sabe sobre los servicios de activación piratas?](https://www.quora.com/Does-Microsoft-know-that-people-are-using-KMOspico-to-activate-Windows-or-Microsoft-office-Microsoft-Office-Toll-Free-Support-Number-1-800-9824-735)
++ [¿Es segura y válida una activación mediante KMS?](https://superuser.com/questions/1383281/is-kms-digital-online-activation-suite-safe-valid-and-genuine-to-activate-window)
 
 # ¿Cómo apagar Windows Defender?
 
