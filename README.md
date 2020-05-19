@@ -216,7 +216,7 @@ Would you like to visit my blog [Y,N]?
 + ¡No sé la contraseña del zip!
 	+ Bro, ese no es un problema. La contraseña es `activate` como se mencionó en el post.
 
-# Anexo Script KMS con comentarios
+# Anexo: Script KMS con comentarios
 ```cmd
 :: @echo off  => define que la terminal no nos devuelva las salidas propias de la terminal
 :: Es muy usado en los scripts para evitar la salida de información basura
