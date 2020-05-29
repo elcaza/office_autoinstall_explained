@@ -230,50 +230,49 @@ title _ Permanently Activate Office 365 ProPlus for FREE => MSGuides . com
 &cls
 
 :: Pone los titulos que nosotros vemos
-&echo ============================================================================
-&echo #Project: Activating Microsoft software products for FREE without software
-&echo ============================================================================
-&echo.
-&echo #Supported products: Office 365 ProPlus (x86-x64)
-&echo.
-&echo.
+echo ============================================================================
+echo #Project: Activating Microsoft software products for FREE without software
+echo ============================================================================
+echo.
+echo #Supported products: Office 365 ProPlus (x86-x64)
+echo.
+echo.
 
 :: & => Es utilizado para concatenar comandos. Usado cuando escribes en una solo línea. 
 :: ( ) => Es usado para agrupar una secuencia de comandos
-&
 (
     :: Condicion if que checa la existencia de un archivo .vbs (Visual Basic Script)
     :: En caso de que exista entramos a la carpeta 
     if exist "%ProgramFiles%\Microsoft Office\Office16\ospp.vbs" 
         cd /d "%ProgramFiles%\Microsoft Office\Office16"
 )
-&(  
+(  
     :: Condicion if que checa la existencia de un archivo .vbs (Visual Basic Script)
     :: En caso de que exista entramos a la carpeta 
     if exist "%ProgramFiles(x86)%\Microsoft Office\Office16\ospp.vbs" 
         cd /d "%ProgramFiles(x86)%\Microsoft Office\Office16"
 )
-&(
+(
     for /f %%x in ('dir /b ..\root\Licenses16\proplusvl_kms*.xrm-ms') 
         do cscript ospp.vbs /inslic:"..\root\Licenses16\%%x" >nul
 )
-&(
+(
     for /f %%x in ('dir /b ..\root\Licenses16\proplusvl_mak*.xrm-ms') 
         do cscript ospp.vbs /inslic:"..\root\Licenses16\%%x" >nul
 )
 
 :: Mensajes que nosotros vemos echo. es un salto de linea
-&echo.
-&echo ============================================================================
-&echo Activating your Office...
+echo.
+echo ============================================================================
+echo Activating your Office...
 
 :: Esta secuenta de comandos settea las claves de los productos y configura varios servidores KMS para corroborar la validez de la clave
 
-&cscript //nologo ospp.vbs /unpkey:WFG99 >nul
-&cscript //nologo ospp.vbs /unpkey:DRTFM >nul
-&cscript //nologo ospp.vbs /unpkey:BTDRB >nul
-&cscript //nologo ospp.vbs /inpkey:XQNVK-8JYDB-WJ9W3-YJ8YR-WFG99 >nul
-&set i=1:server
+cscript //nologo ospp.vbs /unpkey:WFG99 >nul
+cscript //nologo ospp.vbs /unpkey:DRTFM >nul
+cscript //nologo ospp.vbs /unpkey:BTDRB >nul
+cscript //nologo ospp.vbs /inpkey:XQNVK-8JYDB-WJ9W3-YJ8YR-WFG99 >nul
+set i=1:server
     if %i%==1 set KMS_Sev=kms7.MSGuides.com
     if %i%==2 set KMS_Sev=kms8.MSGuides.com
     if %i%==3 set KMS_Sev=kms9.MSGuides.com
@@ -281,41 +280,40 @@ title _ Permanently Activate Office 365 ProPlus for FREE => MSGuides . com
     cscript //nologo ospp.vbs /sethst:%KMS_Sev% >nul
 
 :: Mensajes que nosotros vemos echo. es un salto de linea
-&echo ============================================================================
-&echo.
-&echo.
+echo ============================================================================
+echo.
+echo.
 
 :: Realiza la activación
 
 cscript //nologo ospp.vbs /act | find /i "successful" 
-&
 
 :: Mensajes que nosotros vemos echo. es un salto de linea
-& (echo.
-&echo ============================================================================
-&echo.
-&echo #My official blog: MSGuides.com
-&echo.
-&echo #How it works: bit.ly/kms-server
-&echo.
-&echo #Please feel free to contact me at msguides.com@gmail.com if you have any questions or concerns.
-&echo.
-&echo #Please consider supporting this project: donate.msguides.com
-&echo #Your support is helping me keep my servers running everyday!
-&echo.
-&echo ============================================================================
+(echo.
+echo ============================================================================
+echo.
+echo #My official blog: MSGuides.com
+echo.
+echo #How it works: bit.ly/kms-server
+echo.
+echo #Please feel free to contact me at msguides.com@gmail.com if you have any questions or concerns.
+echo.
+echo #Please consider supporting this project: donate.msguides.com
+echo #Your support is helping me keep my servers running everyday!
+echo.
+echo ============================================================================
 
 :: Realiza una pregunta para saber si quieres mirar su blog
 
-&choice /n /c YN /m "Would you like to visit my blog [Y,N]?" 
-& if errorlevel 2 exit) || (echo The connection to my KMS server failed! Trying to connect to another one... 
+choice /n /c YN /m "Would you like to visit my blog [Y,N]?" 
+if errorlevel 2 exit) || (echo The connection to my KMS server failed! Trying to connect to another one... 
 :: Mensajes que nosotros vemos echo. es un salto de linea
-& echo Please wait... 
-& echo. 
-& echo. 
+echo Please wait... 
+echo. 
+echo. 
 
-& set /a i+=1 
-& goto server)
+set /a i+=1 
+goto server)
 explorer "http://MSGuides.com"
 &goto halt
 
@@ -323,9 +321,9 @@ explorer "http://MSGuides.com"
 
 :: Mensajes que nosotros vemos echo. es un salto de linea
 echo.
-&echo ============================================================================
-&echo Sorry! Your version is not supported.
-&echo Please try installing the latest version here: bit.ly/odt2k16
+echo ============================================================================
+echo Sorry! Your version is not supported.
+echo Please try installing the latest version here: bit.ly/odt2k16
 
 :halt
 pause >nul
