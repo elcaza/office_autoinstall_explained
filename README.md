@@ -218,6 +218,17 @@ Would you like to visit my blog [Y,N]?
 
 # Anexo: Script KMS con comentarios
 ```cmd
+:: ========================================================
+:: ========================================================
+:: ========================================================
+
+:: Aquí separamos el script de una manera únicamente ilustrativa, si se trata de correr nos dará un error porque se pierde el formato.
+:: No necesariamente se ha interpretado correctamente el script, pero se ha hecho el mejor esfuerzo
+
+:: ========================================================
+:: ========================================================
+:: ========================================================
+
 :: @echo off  => define que la terminal no nos devuelva las salidas propias de la terminal
 :: Es muy usado en los scripts para evitar la salida de información basura
 @echo off
@@ -227,9 +238,10 @@ title _ Permanently Activate Office 365 ProPlus for FREE => MSGuides . com
 
 :: & => Es utilizado para concatenar comandos. Usado cuando escribes en una solo línea. 
 :: cls => Hace un limpiado de la pantalla para que no muestre lo escritor anteriormente
-&cls
+cls
 
-:: Pone los titulos que nosotros vemos
+:: Pone los mensajes que nosotros vemos
+:: echo. hace un salto de línea
 echo ============================================================================
 echo #Project: Activating Microsoft software products for FREE without software
 echo ============================================================================
@@ -240,23 +252,34 @@ echo.
 
 :: & => Es utilizado para concatenar comandos. Usado cuando escribes en una solo línea. 
 :: ( ) => Es usado para agrupar una secuencia de comandos
+&
 (
     :: Condicion if que checa la existencia de un archivo .vbs (Visual Basic Script)
     :: En caso de que exista entramos a la carpeta 
+    :: Esto se hace para Office 2016 versión de x64 bits
     if exist "%ProgramFiles%\Microsoft Office\Office16\ospp.vbs" 
         cd /d "%ProgramFiles%\Microsoft Office\Office16"
 )
-(  
+&(  
     :: Condicion if que checa la existencia de un archivo .vbs (Visual Basic Script)
     :: En caso de que exista entramos a la carpeta 
+    :: Esto se hace para Office 2016 versión de x32 bits
     if exist "%ProgramFiles(x86)%\Microsoft Office\Office16\ospp.vbs" 
         cd /d "%ProgramFiles(x86)%\Microsoft Office\Office16"
 )
-(
+&(
+    :: Para cada uno de los archivos que cumplan con una expresión regular ejecuta un script 
+        :: /inslic Instala una licencia con la ruta proporcionada de la licencia .xrm-ms. Se requiere un parámetro de valor
+        :: Esto lo realiza para preparar las llaves KMS
+        :: Corroborar el output del Anexo A
     for /f %%x in ('dir /b ..\root\Licenses16\proplusvl_kms*.xrm-ms') 
         do cscript ospp.vbs /inslic:"..\root\Licenses16\%%x" >nul
 )
-(
+&(
+    :: Para cada uno de los archivos que cumplan con una expresión regular ejecuta un script 
+        :: /inslic Instala una licencia con la ruta proporcionada de la licencia .xrm-ms Se requiere un parámetro de valor
+        :: Esto lo realiza para preparar las llaves MAK
+        :: Corroborar el output del Anexo A
     for /f %%x in ('dir /b ..\root\Licenses16\proplusvl_mak*.xrm-ms') 
         do cscript ospp.vbs /inslic:"..\root\Licenses16\%%x" >nul
 )
@@ -266,13 +289,16 @@ echo.
 echo ============================================================================
 echo Activating your Office...
 
-:: Esta secuenta de comandos settea las claves de los productos y configura varios servidores KMS para corroborar la validez de la clave
+:: Esta secuenta de comandos quita la licencia de prueba actual de office. Dependiendo de nuestra versión acertará en alguna
 
-cscript //nologo ospp.vbs /unpkey:WFG99 >nul
-cscript //nologo ospp.vbs /unpkey:DRTFM >nul
-cscript //nologo ospp.vbs /unpkey:BTDRB >nul
-cscript //nologo ospp.vbs /inpkey:XQNVK-8JYDB-WJ9W3-YJ8YR-WFG99 >nul
-set i=1:server
+&cscript //nologo ospp.vbs /unpkey:WFG99 >nul
+&cscript //nologo ospp.vbs /unpkey:DRTFM >nul
+&cscript //nologo ospp.vbs /unpkey:BTDRB >nul
+
+:: Registra la nueva licencia de office y procede a realizar una activación por medio de KMS.
+    :: Probará al menos esos tres servidores kms7, kms8, kms9
+&cscript //nologo ospp.vbs /inpkey:XQNVK-8JYDB-WJ9W3-YJ8YR-WFG99 >nul
+&set i=1:server
     if %i%==1 set KMS_Sev=kms7.MSGuides.com
     if %i%==2 set KMS_Sev=kms8.MSGuides.com
     if %i%==3 set KMS_Sev=kms9.MSGuides.com
@@ -288,8 +314,9 @@ echo.
 
 cscript //nologo ospp.vbs /act | find /i "successful" 
 
+
 :: Mensajes que nosotros vemos echo. es un salto de linea
-(echo.
+& (echo.
 echo ============================================================================
 echo.
 echo #My official blog: MSGuides.com
@@ -306,14 +333,14 @@ echo ===========================================================================
 :: Realiza una pregunta para saber si quieres mirar su blog
 
 choice /n /c YN /m "Would you like to visit my blog [Y,N]?" 
-if errorlevel 2 exit) || (echo The connection to my KMS server failed! Trying to connect to another one... 
+& if errorlevel 2 exit) || (echo The connection to my KMS server failed! Trying to connect to another one... 
 :: Mensajes que nosotros vemos echo. es un salto de linea
-echo Please wait... 
-echo. 
-echo. 
+& echo Please wait... 
+& echo. 
+& echo. 
 
-set /a i+=1 
-goto server)
+& set /a i+=1 
+& goto server)
 explorer "http://MSGuides.com"
 &goto halt
 
@@ -327,6 +354,72 @@ echo Please try installing the latest version here: bit.ly/odt2k16
 
 :halt
 pause >nul
+
+
+:: Anexo A
+    :: Se puede visualizar la quitar todos los ">nul" del script
+:: ---Processing--------------------------
+:: ---------------------------------------
+:: Installing Office license: ..\root\licenses16\proplusvl_kms_client-ppd.xrm-ms
+:: Office license installed successfully.
+:: ---------------------------------------
+:: ---Exiting-----------------------------
+:: Microsoft (R) Windows Script Host Version 5.812
+:: Copyright (C) Microsoft Corporation. All rights reserved.
+:: 
+:: ---Processing--------------------------
+:: ---------------------------------------
+:: Installing Office license: ..\root\licenses16\proplusvl_kms_client-ul-oob.xrm-ms
+:: Office license installed successfully.
+:: ---------------------------------------
+:: ---Exiting-----------------------------
+:: Microsoft (R) Windows Script Host Version 5.812
+:: Copyright (C) Microsoft Corporation. All rights reserved.
+:: 
+:: ---Processing--------------------------
+:: ---------------------------------------
+:: Installing Office license: ..\root\licenses16\proplusvl_kms_client-ul.xrm-ms
+:: Office license installed successfully.
+:: ---------------------------------------
+:: ---Exiting-----------------------------
+:: Microsoft (R) Windows Script Host Version 5.812
+:: Copyright (C) Microsoft Corporation. All rights reserved.
+:: 
+:: ---Processing--------------------------
+:: ---------------------------------------
+:: Installing Office license: ..\root\licenses16\proplusvl_mak-pl.xrm-ms
+:: Office license installed successfully.
+:: ---------------------------------------
+:: ---Exiting-----------------------------
+:: Microsoft (R) Windows Script Host Version 5.812
+:: Copyright (C) Microsoft Corporation. All rights reserved.
+:: 
+:: ---Processing--------------------------
+:: ---------------------------------------
+:: Installing Office license: ..\root\licenses16\proplusvl_mak-ppd.xrm-ms
+:: Office license installed successfully.
+:: ---------------------------------------
+:: ---Exiting-----------------------------
+:: Microsoft (R) Windows Script Host Version 5.812
+:: Copyright (C) Microsoft Corporation. All rights reserved.
+
+:: ---Processing--------------------------
+:: ---------------------------------------
+:: Installing Office license: ..\root\licenses16\proplusvl_mak-ul-oob.xrm-ms
+:: Office license installed successfully.
+:: ---------------------------------------
+:: ---Exiting-----------------------------
+:: Microsoft (R) Windows Script Host Version 5.812
+:: Copyright (C) Microsoft Corporation. All rights reserved.
+:: 
+:: ---Processing--------------------------
+:: ---------------------------------------
+:: Installing Office license: ..\root\licenses16\proplusvl_mak-ul-phn.xrm-ms
+:: Office license installed successfully.
+---------------------------------------
+:: ---Exiting-----------------------------
+:: 
+:: ============================================================================
 ```
 # ¿Cómo apagar Windows Defender?
 
