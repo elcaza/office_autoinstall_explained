@@ -11,7 +11,7 @@
       <ExcludeApp ID="Skype" />
       <ExcludeApp ID="Skypeforbusiness" />
       <ExcludeApp ID="Groove" />
-       
+      <ExcludeApp ID="Publisher" />
     </Product>
   </Add>
   <Display Level="Full" AcceptEULA="TRUE" />
